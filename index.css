@@ -1,0 +1,59 @@
+.navbar-nav li:last-child{
+    position: absolute;
+    right: 20px;
+}
+.navbar{
+    position: relative;
+}
+body {
+    background: #1c92d2;  /* fallback for old browsers */
+background: -webkit-linear-gradient(to right, #f2fcfe, #1c92d2);  /* Chrome 10-25, Safari 5.1-6 */
+background: linear-gradient(to right, #f2fcfe, #1c92d2); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+#signIn_window{
+    display: none;
+    width: 60%;
+    margin: 100px auto;
+    padding: 20px;
+    border-radius: 4px;
+    background: #9D50BB;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #6E48AA, #9D50BB);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #6E48AA, #9D50BB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+
+}
+#signIn_window .title{
+    text-align: center;
+}
+#alertSignIn {   
+    display: none; 
+    width: 80%;
+    list-style-type: none;    
+}
+#signUpTip {  
+    margin: 10px auto;      
+}
+#signUpTip button {
+    margin-right: 10px;
+}
+#signUp_window {
+    display: none;
+    width: 60%;
+    margin: 100px auto;
+    padding: 20px;
+    border-radius: 4px;
+    background: #9D50BB;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #6E48AA, #9D50BB);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #6E48AA, #9D50BB); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+}
+#signUp_window .title{
+    text-align: center;
+}
+#alertSignUp {   
+    display: none; 
+    width: 80%;
+    list-style-type: none;    
+}
+#userName {
+    display: none;
+}

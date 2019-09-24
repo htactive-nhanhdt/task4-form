@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Task4-Form</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="#">Home</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                    <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                </li>
+                <li class="nav-item">
+                    <span id="userName">UserName</span>
+                    <button id="signInBtn" onclick="openSignIn()">Sign in</button>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div id='main'>
+        <div id="signIn_window">
+            <h2 class="title">LOG IN</h2>
+            <ul class="alert alert-danger" id="alertSignIn"></ul>
+            <form onsubmit="return validateFormSignUp()" id="formSignIn">
+                <div class="form-group">
+                    <label for="inputEmail">Email address</label>
+                    <input type="email" class="form-control" id="inputEmail" aria-describedby="emailHelp"
+                        placeholder="Enter email" name="inputEmail">
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword">Password</label>
+                    <input type="password" class="form-control" id="inputPassword" placeholder="Password"
+                        name="password">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <div id="signUpTip">
+                <button onclick="openSignUp()" id="signUpBtn" class="btn btn-primary">Sign up</button>
+                <span>if you dont have account</span>
+            </div>
+        </div>
+        <div id="signUp_window">
+            <h2 class="title">SIGN UP</h2>
+            <ul class="alert alert-danger" id="alertSignUp"></ul>
+            <form onsubmit="return validateFormSignUp()" id="formSignUp">
+                <div class="form-group">
+                    <label for="inputName">Name</label>
+                    <input type="text" class="form-control"  aria-describedby="emailHelp"
+                        placeholder="Enter name" name="name">
+                </div>
+                <div class="form-group">
+                    <label for="inputEmail">Email address</label>
+                    <input type="email" class="form-control"  aria-describedby="emailHelp"
+                        placeholder="Enter email" name="email">
+                </div>
+                <div class="form-group">
+                    <label for="inputPassword">Password</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password"
+                        name="password">
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+
+        </div>
+    </div>
+    <script>
+        let loginWindow = document.getElementById("signIn_window")
+        let login = document.getElementById("formSignIn")
+        let signInBtn = document.getElementById("signInBtn");
+
+        let signUpWindow = document.getElementById("signUp_window")
+        let signUpForm = document.getElementById("formSignUp")
+        let signUpBtn = document.getElementById("signUpBtn");
+
+        let userName = document.getElementById("userName")
+
+        signInBtn.addEventListener("click", openSignIn)
+        function openSignIn() {
+            loginWindow.style.display = "block";
+        }
+
+        signUpBtn.addEventListener("click", openSignUp)
+        function openSignUp() {
+            signUpWindow.style.display = "block";
+            loginWindow.style.display = "none";
+        }
+
+     
+        login.addEventListener("submit", validateForm)
+        function validateForm(event) {
+            event.preventDefault();
+          
+            let email = event.target.inputEmail.value;
+            let password = event.target.password.value;           
+            let spaceInEmail = email.split("").find((element) => element == " ");
+            let spaceInPassword = password.split("").find((element) => element == " ");
+            let alertSignIn = document.getElementById("alertSignIn");           
+            let errors = [];
+
+            if (spaceInPassword || password == "") {
+                errors.push("No space in password")
+                let content = errors.map(item =>
+                    `<li><p>${item}</p></li>`
+                )
+                alertSignIn.innerHTML = content.join(" ");
+                alertSignIn.style.display = "block";
+            }
+   
+            if (email == "") {
+                errors.push("Email is empty");
+                let content = errors.map(item =>
+                    `<li><p>${item}</p></li>`
+                )
+                alertSignIn.innerHTML = content.join(" ");
+                alertSignIn.style.display = "block";
+            }
+            if (errors.length == 0) {
+                formSignIn.reset();
+                alertSignIn.style.display = "none";
+                loginWindow.style.display = "none";
+                signInBtn.style.display ="none"
+                userName.style.display = "block";
+              
+            }
+            return false;
+        }
+
+        signUpForm.addEventListener("submit", validateFormSignUp)
+        function validateFormSignUp(event) {
+            event.preventDefault();
+               
+            let email = event.target.email.value;
+            let name = event.target.name.value;
+            let password = event.target.password.value;    
+            let spaceInName = name.split("").find((element) => element == " ");
+            let spaceInEmail = email.split("").find((element) => element == " ");
+            let spaceInPassword = password.split("").find((element) => element == " ");
+            let alertSignUp = document.getElementById("alertSignUp");           
+            let errors = [];
+            if (spaceInName|| name == "") {
+                errors.push("No space in name")
+                let content = errors.map(item =>
+                    `<li><p>${item}</p></li>`
+                )
+                alertSignUp.innerHTML = content.join(" ");
+                alertSignUp.style.display = "block";
+            }
+            if (email == "") {
+                errors.push("Email is empty");
+                let content = errors.map(item =>
+                    `<li><p>${item}</p></li>`
+                )
+                alertSignUp.innerHTML = content.join(" ");
+                alertSignUp.style.display = "block";
+            }
+            if (spaceInPassword || password == "") {
+                errors.push("No space in password")
+                let content = errors.map(item =>
+                    `<li><p>${item}</p></li>`
+                )
+                alertSignUp.innerHTML = content.join(" ");
+                alertSignUp.style.display = "block";
+            } 
+            if (errors.length == 0) {
+                formSignUp.reset();
+                alertSignUp.style.display = "none";
+                signUpWindow.style.display = "none";
+                signInBtn.style.display = "none";
+                let content = `<p>Hello: ${name}`;
+                userName.innerHTML = content;
+                userName.style.display = "block";
+              
+            }
+            return false;
+        }
+    </script>
+</body>
+
+</html>
